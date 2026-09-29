@@ -1,0 +1,53 @@
+
+\documentclass[12pt,a4paper]{article}
+
+\title{\textbf{Labwork 2}}
+\author{Truong Quang Nam\\Student ID: 2540080}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section{GPU Information}
+
+The GPU information was obtained using the Numba CUDA API.
+
+\begin{itemize}
+    \item \textbf{Device name:} NVIDIA GeForce GTX 1650
+    \item \textbf{Multiprocessor count:} 14
+    \item \textbf{Memory size:} 3,895,132,160 bytes
+    \item \textbf{Memory size:} approximately 3.63 GB
+    \item \textbf{Compute capability:} 7.5
+\end{itemize}
+
+The GPU has 14 multiprocessors and approximately 3.63 GB of reported
+device memory. Its compute capability is 7.5, which corresponds to the
+NVIDIA Turing architecture.
+
+\section{GPU Detection Code}
+
+The following Python code was used to obtain the GPU information:
+
+\begin{verbatim}
+from numba import cuda
+
+gpu = cuda.get_current_device()
+
+free_memory, total_memory = cuda.current_context().get_memory_info()
+
+print("Device name:", gpu.name)
+print("Multiprocessor count:", gpu.MULTIPROCESSOR_COUNT)
+print("Memory size:", total_memory, "bytes")
+print("Memory size:", total_memory / (1024**3), "GB")
+print("Compute capability:", gpu.compute_capability)
+\end{verbatim}
+
+\section{Result}
+
+The program successfully detected the NVIDIA GeForce GTX 1650 GPU.
+The device contains 14 multiprocessors and reports approximately
+3.63 GB of device memory. The reported compute capability is 7.5.
+
+\end{document}
+
